@@ -10,3 +10,14 @@ services:
       POSTGRES_DB: "book"
     volumes: 
       - ./db-data:/var/lib/postgresql/data
+
+  web:
+    container_name: web_asp
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+
