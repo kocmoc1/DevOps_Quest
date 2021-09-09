@@ -1,0 +1,7 @@
+
+replicaCount: 2
+image: aspnetcore_sample_web:latest
+pullPolicy: IfNotPresent
+db: "book"
+dbuser: "postgres"
+dbpass: "12345"

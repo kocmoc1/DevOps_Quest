@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db-{{ .Release.Name}}
+  namespace: default
+  labels:
+    app: db-{{ .Release.Name}}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: db-{{ .Release.Name}}
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: db-{{ .Release.Name}}
+    spec:
+      containers:
+      - env:
+        - name: POSTGRES_DB
+          value: "{{ .Values.db}}"
+        - name: POSTGRES_PASSWORD
+          value: "{{ .Values.dbpass}}"
+        - name: POSTGRES_USER
+          value: "{{ .Values.dbuser}}"
+        image: postgres
+        imagePullPolicy: ""
+        name: db
+        ports:
+        - containerPort: 5432
+        resources: {}
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes: null
+status: {}

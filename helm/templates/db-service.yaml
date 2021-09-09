@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: db-{{ .Release.Name}}
+  namespace: default
+spec:
+  selector:
+    app: db-{{ .Release.Name}}
+  ports:
+  - name: "5432"
+    port: 5432
+    targetPort: 5432
+status:
+  loadBalancer: {}

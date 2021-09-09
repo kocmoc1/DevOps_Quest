@@ -12,10 +12,11 @@ services:
       - ./db-data:/var/lib/postgresql/data
 
   web:
+    image: "aspnetcore_sample_web"
     container_name: web_asp
-    build:
-      context: .
-      dockerfile: Dockerfile
+    #build:
+      #context: .
+      #dockerfile: Dockerfile
     ports:
       - "5000:5000"
     depends_on:
